@@ -1,0 +1,87 @@
+# Smoke test configuration (executes quickly on CPU ‑ synthetic data)
+experiments:
+  - run_id: smoke_full_model
+    model:
+      type: FULL
+    dataset:
+      name: SYNTHETIC
+      image_size: 32
+      num_channels: 3
+    training:
+      epochs: 1
+      batch_size: 8
+      learning_rate: 1e-4
+      lambda: 0.0
+    generation:
+      num_samples: 16
+      num_steps: 10
+
+  - run_id: smoke_ase_default
+    model:
+      type: ASE
+      drop_fraction: 0.5  # default linear schedule
+    dataset:
+      name: SYNTHETIC
+      image_size: 32
+      num_channels: 3
+    training:
+      epochs: 1
+      batch_size: 8
+      learning_rate: 1e-4
+      lambda: 0.0
+    generation:
+      num_samples: 16
+      num_steps: 10
+
+  - run_id: smoke_ase_grid
+    model:
+      type: ASE
+      drop_fraction: 0.3  # grid-search winner in tiny setting
+    dataset:
+      name: SYNTHETIC
+      image_size: 32
+      num_channels: 3
+    training:
+      epochs: 1
+      batch_size: 8
+      learning_rate: 1e-4
+      lambda: 0.0
+    generation:
+      num_samples: 16
+      num_steps: 10
+
+  - run_id: smoke_lees_hard
+    model:
+      type: LEES
+      lambda: 0.1
+      gating: hard
+    dataset:
+      name: SYNTHETIC
+      image_size: 32
+      num_channels: 3
+    training:
+      epochs: 1
+      batch_size: 8
+      learning_rate: 1e-3
+      lambda: 0.1
+    generation:
+      num_samples: 16
+      num_steps: 10
+
+  - run_id: smoke_lees_soft
+    model:
+      type: LEES
+      lambda: 0.1
+      gating: soft
+    dataset:
+      name: SYNTHETIC
+      image_size: 32
+      num_channels: 3
+    training:
+      epochs: 1
+      batch_size: 8
+      learning_rate: 1e-3
+      lambda: 0.1
+    generation:
+      num_samples: 16
+      num_steps: 10

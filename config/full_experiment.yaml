@@ -1,0 +1,102 @@
+# Full experiment configuration for exp-1-main-ablation
+experiments:
+  # -------------------------------------------------------------------------
+  # 1. Full model (no skipping)
+  # -------------------------------------------------------------------------
+  - run_id: full-model
+    model:
+      type: FULL
+    dataset:
+      name: CIFAR10
+      image_size: 32
+      num_channels: 3
+    training:
+      epochs: 0  # backbone already trained – no fine-tuning
+      batch_size: 512
+      learning_rate: 0.0
+      lambda: 0.0
+    generation:
+      num_samples: 10000  # used for FID on CIFAR-10
+      num_steps: 50
+
+  # -------------------------------------------------------------------------
+  # 2. ASE – default linear schedule (drop 50 % of blocks)
+  # -------------------------------------------------------------------------
+  - run_id: ASE-default
+    model:
+      type: ASE
+      drop_fraction: 0.5
+    dataset:
+      name: CIFAR10
+      image_size: 32
+      num_channels: 3
+    training:
+      epochs: 0
+      batch_size: 512
+      learning_rate: 0.0
+      lambda: 0.0
+    generation:
+      num_samples: 10000
+      num_steps: 50
+
+  # -------------------------------------------------------------------------
+  # 3. ASE – best grid-searched schedule (keep 70 % blocks ⇒ drop 30 %)
+  # -------------------------------------------------------------------------
+  - run_id: ASE-grid
+    model:
+      type: ASE
+      drop_fraction: 0.3
+    dataset:
+      name: CIFAR10
+      image_size: 32
+      num_channels: 3
+    training:
+      epochs: 0
+      batch_size: 512
+      learning_rate: 0.0
+      lambda: 0.0
+    generation:
+      num_samples: 10000
+      num_steps: 50
+
+  # -------------------------------------------------------------------------
+  # 4. LEES – hard gating (proposed)
+  # -------------------------------------------------------------------------
+  - run_id: LEES-hard
+    model:
+      type: LEES
+      lambda: 0.05
+      gating: hard
+    dataset:
+      name: CIFAR10
+      image_size: 32
+      num_channels: 3
+    training:
+      epochs: 1
+      batch_size: 512
+      learning_rate: 1e-3
+      lambda: 0.05
+    generation:
+      num_samples: 10000
+      num_steps: 50
+
+  # -------------------------------------------------------------------------
+  # 5. LEES – soft gating (ablation)
+  # -------------------------------------------------------------------------
+  - run_id: LEES-soft
+    model:
+      type: LEES
+      lambda: 0.05
+      gating: soft
+    dataset:
+      name: CIFAR10
+      image_size: 32
+      num_channels: 3
+    training:
+      epochs: 1
+      batch_size: 512
+      learning_rate: 1e-3
+      lambda: 0.05
+    generation:
+      num_samples: 10000
+      num_steps: 50
