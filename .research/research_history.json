@@ -2,5 +2,13 @@
   "research_topic": "diffusion model improvement",
   "queries": [
     "diffusion model sampling optimization"
+  ],
+  "research_study_list": [
+    {
+      "title": "A Simple Early Exiting Framework for Accelerated Sampling in Diffusion Models"
+    },
+    {
+      "title": "Align Your Steps: Optimizing Sampling Schedules in Diffusion Models"
+    }
   ]
 }
