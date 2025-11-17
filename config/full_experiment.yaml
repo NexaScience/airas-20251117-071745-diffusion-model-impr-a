@@ -1,0 +1,100 @@
+# Production configuration for the full generalisation & robustness study.
+
+experiments:
+  # ---------------------------------------------------------------------------
+  # 1. LEES on DDPM-UNet – CIFAR-10 32²
+  # ---------------------------------------------------------------------------
+  - run_id: LEES-DDPM-CIFAR10
+    model:
+      type: LEES
+      lambda: 0.1
+    dataset:
+      name: CIFAR10
+      image_size: 32
+      num_channels: 3
+    training:
+      epochs: 1
+      batch_size: 128
+      learning_rate: 1e-3
+      lambda: 0.1
+    generation:
+      num_samples: 100
+      num_steps: 50
+
+  # ---------------------------------------------------------------------------
+  # 2. LEES on ADM – CelebA-HQ 64²
+  # ---------------------------------------------------------------------------
+  - run_id: LEES-ADM-CelebA64
+    model:
+      type: LEES
+      lambda: 0.1
+    dataset:
+      name: CELEBA64
+      image_size: 64
+      num_channels: 3
+    training:
+      epochs: 1
+      batch_size: 64
+      learning_rate: 1e-3
+      lambda: 0.1
+    generation:
+      num_samples: 100
+      num_steps: 50
+
+  # ---------------------------------------------------------------------------
+  # 3. LEES on Latent Diffusion – ImageNet 256² (latent 32²)
+  # ---------------------------------------------------------------------------
+  - run_id: LEES-LDM-ImageNet256
+    model:
+      type: LEES
+      lambda: 0.1
+    dataset:
+      name: IMAGENET256
+      image_size: 256
+      num_channels: 3
+    training:
+      epochs: 1
+      batch_size: 16
+      learning_rate: 1e-3
+      lambda: 0.1
+    generation:
+      num_samples: 100
+      num_steps: 50
+
+  # ---------------------------------------------------------------------------
+  # 4. ASE baseline – DDPM-UNet CIFAR-10 32²
+  # ---------------------------------------------------------------------------
+  - run_id: ASE-DDPM-CIFAR10
+    model:
+      type: ASE
+      drop_fraction: 0.5
+    dataset:
+      name: CIFAR10
+      image_size: 32
+      num_channels: 3
+    training:
+      epochs: 1
+      batch_size: 128
+      learning_rate: 1e-3
+    generation:
+      num_samples: 100
+      num_steps: 50
+
+  # ---------------------------------------------------------------------------
+  # 5. Progressive Distillation – ImageNet 256²
+  # ---------------------------------------------------------------------------
+  - run_id: ProgressiveDistill-ImageNet256
+    model:
+      type: ProgressiveDistill
+      step_reduction: 5
+    dataset:
+      name: IMAGENET256
+      image_size: 256
+      num_channels: 3
+    training:
+      epochs: 1
+      batch_size: 16
+      learning_rate: 1e-3
+    generation:
+      num_samples: 100
+      num_steps: 50

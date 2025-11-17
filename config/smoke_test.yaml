@@ -1,0 +1,85 @@
+# Lightweight smoke-test configuration covering all five run variations.
+
+experiments:
+  - run_id: smoke_LEES_DDPM_CIFAR10
+    model:
+      type: LEES
+      lambda: 0.1
+    dataset:
+      name: SYNTHETIC  # use synthetic data for quick test
+      image_size: 32
+      num_channels: 3
+    training:
+      epochs: 1
+      batch_size: 8
+      learning_rate: 1e-3
+      lambda: 0.1
+    generation:
+      num_samples: 8
+      num_steps: 10
+
+  - run_id: smoke_LEES_ADM_CelebA64
+    model:
+      type: LEES
+      lambda: 0.1
+    dataset:
+      name: SYNTHETIC
+      image_size: 64
+      num_channels: 3
+    training:
+      epochs: 1
+      batch_size: 4
+      learning_rate: 1e-3
+      lambda: 0.1
+    generation:
+      num_samples: 8
+      num_steps: 10
+
+  - run_id: smoke_LEES_LDM_ImageNet256
+    model:
+      type: LEES
+      lambda: 0.1
+    dataset:
+      name: SYNTHETIC
+      image_size: 256
+      num_channels: 3
+    training:
+      epochs: 1
+      batch_size: 2
+      learning_rate: 1e-3
+      lambda: 0.1
+    generation:
+      num_samples: 4
+      num_steps: 10
+
+  - run_id: smoke_ASE_DDPM_CIFAR10
+    model:
+      type: ASE
+      drop_fraction: 0.5
+    dataset:
+      name: SYNTHETIC
+      image_size: 32
+      num_channels: 3
+    training:
+      epochs: 1
+      batch_size: 8
+      learning_rate: 1e-3
+    generation:
+      num_samples: 8
+      num_steps: 10
+
+  - run_id: smoke_PD_ImageNet256
+    model:
+      type: ProgressiveDistill
+      step_reduction: 5
+    dataset:
+      name: SYNTHETIC
+      image_size: 256
+      num_channels: 3
+    training:
+      epochs: 1
+      batch_size: 2
+      learning_rate: 1e-3
+    generation:
+      num_samples: 4
+      num_steps: 10
