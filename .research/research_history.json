@@ -87,6 +87,11 @@
             "result": "",
             "error": "",
             "image_file_name_list": []
+          },
+          "evaluation": {
+            "consistency_score": 2,
+            "consistency_feedback": "No numerical or qualitative results were produced for exp-1-main-ablation—the result, error, and image fields are empty and all code files are blank.  Consequently:\n\n1. Experimental Strategy Issues – minor:  The planned design (five variants, 5 seeds, FID vs. latency Pareto) is scientifically appropriate and directly targets H1–H2.  However, without any execution it cannot be assessed.\n\n2. Implementation Issues – major:  The provided repository contains only empty stubs (evaluate_py, main_py, etc.).  The experiment therefore never ran, generated no logs, and yielded no metrics.  This breaks the link between the proposed strategy and empirical evidence.\n\n3. Result Interpretation Issues – critical:  Because nothing executed, there is no basis for claiming that LEES outperforms ASE or meets the ≥30 % speed-up target.  Any discussion of superiority would be speculative.\n\nImpact on paper inclusion: In its current state the experiment cannot be included; it offers no evidence to support the main claims.  At minimum the code must be implemented and the experiment re-run to produce FID and latency numbers before it can contribute to the paper.\n",
+            "is_selected_for_paper": true
           }
         },
         {
@@ -118,6 +123,11 @@
             "result": "",
             "error": "",
             "image_file_name_list": []
+          },
+          "evaluation": {
+            "consistency_score": 1,
+            "consistency_feedback": "The experiment exp-2-generalisation-robustness was not executed: the provided code stubs are empty, no numerical results (FID, latency, FLOPs, ΔFID on corruptions, etc.) are reported, and the result/ error fields are blank. \n\nProblem categorisation:\n1. Implementation Issues – the implementation of the described multi-dataset LEES evaluation is missing; no training or evaluation pipeline is actually supplied.\n2. Experimental Strategy Issues – while the planned strategy is sound and aligns with hypotheses H3–H5, the absence of any executed runs or logged metrics prevents assessment of whether the strategy can validate the claims.\n3. Result Interpretation Issues – because no results exist, none of the claimed improvements (≥30 % compute savings, ≤1 % FID degradation, robustness parity with ASE) can be verified.\n\nEffect on paper inclusion: The experiment currently provides zero evidential value for the paper’s generalisation and robustness claims. It must be rerun and produce quantitative results (with statistical repeats) before inclusion.\n\nSuggested minimal fixes (staying within scope): supply working code that follows the stated recipe, run the three LEES variants plus baselines for at least one seed, and report FID, executed-block counts, latency and ΔFID on corrupted data so the hypotheses can be judged.",
+            "is_selected_for_paper": true
           }
         }
       ],
